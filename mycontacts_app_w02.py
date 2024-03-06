@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 from datetime import datetime, date
 
 # Set page configuration
@@ -54,6 +55,50 @@ def main():
 
     display_dataframe()
     plot_data()
+
+st.title('Willkommen zum Age Calculator')
+st.text('Gib links dein Name und dein Geburtsdatum ein und wir berechen wie alt du bist.')
+st.write('Du bist der erst Besucher heute* :sunglasses:')
+
+st.title('Probieren wir mal ein Data Element aus')
+st.text('Spielen wir mal etwas mit Zahlen rum.')
+df = pd.DataFrame(np.random.randn(50, 20), columns=("col %d" % i for i in range(20)))
+
+st.dataframe(df)
+
+st.title('Probieren wir mal ein Chart Element aus')
+st.text('Keine Ahnung was das Darstellen soll aber es sieht cool aus.')
+chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+
+st.area_chart(chart_data)
+
+st.title('Jetzt versuchen wir mal ein Input Element')
+st.text('Sei so lieb und unterstütze den Entwickler: Mich :)')
+
+st.button("Erneut versuchen", type="primary")
+if st.button('Liebe Grüsse an den Entwickler'):
+    st.write('Danke schön')
+else:
+    st.write('Vielleicht ein anderes Mal')
+
+st.title('Nun eine Sidebar und einen Container')
+add_selectbox = st.sidebar.selectbox(
+    "Wie findest du diese Website?",
+    ("Genial", "Super", "Toll")
+)
+
+add_selectbox = st.sidebar.selectbox(
+    "Wie ist das Programmieren so?",
+    ("Spanned", "Langweilig", "Super")
+)
+
+container = st.container(border=True)
+container.write("Das ist drin")
+st.write("Das ist nicht mehr drin")
+
+container.write("Das ist auch noch drin")
+
+st.text('So das war jetzt viel rumspielen,hier gehts endlich zum deinem Alter und dem Graphen dazu. Viel Spass!')
 
 if __name__ == "__main__":
     main()
